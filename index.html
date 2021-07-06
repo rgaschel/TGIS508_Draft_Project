@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Lab 3</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+<script type="text/javascript" src="js/geojson.min.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 10px; padding: 10px; }
+	#map { height: 80vh; }
+	#map2 { height: 80vh;}
+</style>
+</head>
+<body>
+		<!--Map2-->
+
+		<div>
+		<h1> Capstone</h1>
+		<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+		<link
+			rel="stylesheet"
+			href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+			type="text/css"/>
+	<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+	<div id='map2'</div>
+		<script>
+			mapboxgl.accessToken = 'pk.eyJ1Ijoicmdhc2NoZWwiLCJhIjoiY2toY25oNjkzMDQ3ODJyc2I1YWoyczk2bCJ9.pMf2mjeJHvfkdPM7jEAFCg';
+			var map2 = new mapboxgl.Map({
+			 container: 'map2',
+			 style: 'mapbox://styles/rgaschel/ckolqpnyc2x8k17nv44anqc1s',
+			 center: [-122.332069, 47.606209],
+			 zoom: 12,
+
+
+			});
+
+			map2.addControl(
+			new MapboxGeocoder({
+			accessToken: mapboxgl.accessToken,
+			mapboxgl: mapboxgl
+			})
+		);
+			 map2.on('load', function(){
+				map2.addSource('lime', {
+							"type": "geojson",
+							"data": "js/geojson.js"
+					});
+					map2.addLayer({
+						"id":"scooter",
+						"type":"circle",
+						"source":"lime",
+						"paint": {
+							"circle-color": "#00FF00",
+							"circle-radius": 3
+						}
+
+
+					});
+			});
+
+		</script>
+	</div>
+	</body>
+	</html>
